@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.carservice.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/actionHomeFragmentToServiceUpcomingDetailFragment"
+            app:destination="@id/serviceUpcomingDetailFragment" />
+    </fragment>
+
+    <!-- Service Upcoming Detail Fragment -->
+    <fragment
+        android:id="@+id/serviceUpcomingDetailFragment"
+        android:name="com.example.carservice.ui.details.ServiceUpcomingDetailFragment"
+        android:label="@string/title_service_upcoming_detail"
+        tools:layout="@layout/fragment_service_upcoming_detail">
+
+        <argument android:name="bookingId" app:argType="string" app:nullable="false" />
+        <argument android:name="serviceDate" app:argType="string" app:nullable="false" />
+        <argument android:name="serviceTime" app:argType="string" app:nullable="false" />
+        <argument android:name="serviceDescription" app:argType="string" />
+        <argument android:name="serviceDuration" app:argType="string" />
+        <argument android:name="serviceId" app:argType="string" />
+        <argument android:name="serviceName" app:argType="string" app:nullable="false" />
+        <argument android:name="servicePrice" app:argType="string" />
+        <argument android:name="status" app:argType="string" />
+        <argument android:name="username" app:argType="string" />
+        <argument android:name="vehicle" app:argType="string" />
+        <argument android:name="paymentMethod" app:argType="string" />
+
+        <action
+            android:id="@+id/action_serviceUpcomingDetailFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+
+        <action
+            android:id="@+id/action_serviceUpcomingDetailFragment_to_cancelBookingFragment"
+            app:destination="@id/navigation_cancel" />
+    </fragment>
+
+    <!-- Cancel Fragment -->
+    <fragment
+        android:id="@+id/navigation_cancel"
+        android:name="com.example.carservice.ui.cancel.CancelBookingFragment"
+        android:label="@string/label_cancel"
+        tools:layout="@layout/fragment_cancel_booking">
+
+        <argument
+            android:name="bookingId"
+            app:argType="string" />
+        <argument
+            android:name="serviceName"
+            app:argType="string" />
+        <argument
+            android:name="serviceDate"
+            app:argType="string" />
+        <argument
+            android:name="serviceTime"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/actionCancelBookingFragmentToCancelSuccessFragment"
+            app:destination="@id/cancelSuccessFragment" />
+        <action
+            android:id="@+id/action_cancelBookingFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cancelSuccessFragment"
+        android:name="com.example.carservice.ui.cancel.CancelSuccessFragment"
+        tools:layout="@layout/fragment_cancel_success"
+        android:label="@string/label_cancel_success">
+        <argument
+            android:name="serviceName"
+            app:argType="string" />
+        <argument
+            android:name="serviceDate"
+            app:argType="string" />
+        <argument
+            android:name="serviceTime"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/actionCancelSuccessFragmentToHomeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+
+    <!-- Services Fragment -->
+    <fragment
+        android:id="@+id/navigation_services"
+        android:name="com.example.carservice.ui.services.ServicesFragment"
+        android:label="@string/title_services"
+        tools:layout="@layout/fragment_services">
+
+        <action
+            android:id="@+id/action_serviceFragment_to_serviceDetailFragment"
+            app:destination="@id/serviceDetailFragment" />
+    </fragment>
+
+    <!-- Service Detail Fragment -->
+    <fragment
+        android:id="@+id/serviceDetailFragment"
+        android:name="com.example.carservice.ui.services.ServiceDetailFragment"
+        android:label="@string/title_service_detail"
+        tools:layout="@layout/fragment_service_detail">
+
+        <argument android:name="bookingId" app:argType="string" />
+        <argument android:name="serviceId" app:argType="string" />
+        <argument android:name="serviceName" app:argType="string" />
+        <argument android:name="serviceDescription" app:argType="string" />
+        <argument android:name="servicePrice" app:argType="string" />
+        <argument android:name="serviceDuration" app:argType="string" />
+        <argument android:name="serviceDate" app:argType="string" />
+        <argument android:name="serviceTime" app:argType="string" />
+        <argument android:name="vehicle" app:argType="string" />
+        <argument android:name="username" app:argType="string" />
+        <argument android:name="paymentMethod" app:argType="string" />
+
+        <action
+            android:id="@+id/action_serviceDetailFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+    </fragment>
+
+    <!-- Booking Confirmation Fragment -->
+    <fragment
+        android:id="@+id/bookingConfirmationFragment"
+        android:name="com.example.carservice.ui.booking.BookingConfirmationFragment"
+        android:label="@string/title_booking_confirmation"
+        tools:layout="@layout/fragment_booking_confirmation">
+
+        <argument android:name="serviceId" app:argType="string" />
+        <argument android:name="serviceDate" app:argType="string" />
+        <argument android:name="serviceDuration" app:argType="string" />
+        <argument android:name="serviceName" app:argType="string" />
+        <argument android:name="servicePrice" app:argType="string" />
+        <argument android:name="serviceTime" app:argType="string" />
+        <argument android:name="userId" app:argType="string" />
+        <argument android:name="username" app:argType="string" />
+        <argument android:name="vehicle" app:argType="string" />
+
+        <action
+            android:id="@+id/action_bookingConfirmationFragment_to_bookingSuccessFragment"
+            app:destination="@id/bookingSuccessFragment" />
+    </fragment>
+
+    <!-- Booking Success Fragment -->
+    <fragment
+        android:id="@+id/bookingSuccessFragment"
+        android:name="com.example.carservice.ui.booking.BookingSuccessFragment"
+        android:label="@string/title_booking_success"
+        tools:layout="@layout/fragment_booking_success">
+
+        <argument android:name="confirmationMessage" app:argType="string" />
+        <argument android:name="confirmationSelectedDate" app:argType="string" />
+        <argument android:name="confirmationSelectedTime" app:argType="string" />
+        <argument android:name="confirmationServiceDuration" app:argType="string" />
+        <argument android:name="confirmationServiceName" app:argType="string" />
+        <argument android:name="confirmationServicePrice" app:argType="string" />
+        <argument android:name="confirmationPaymentMethod" app:argType="string" />
+        <argument android:name="userId" app:argType="string" />
+        <argument android:name="username" app:argType="string" />
+        <argument android:name="vehicle" app:argType="string" />
+
+        <action
+            android:id="@+id/action_bookingSuccessFragment_to_servicesFragment"
+            app:destination="@id/navigation_services" />
+
+        <action
+            android:id="@+id/action_bookingSuccessFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <!-- Appointments Fragment -->
+    <fragment
+        android:id="@+id/navigation_appointments"
+        android:name="com.example.carservice.ui.appointments.AppointmentsFragment"
+        android:label="@string/title_appointments"
+        tools:layout="@layout/fragment_appointments">
+
+        <action
+            android:id="@+id/action_appointmentsFragment_to_historyDetailFragment"
+            app:destination="@id/historyDetailFragment" />
+    </fragment>
+
+    <!-- History Detail Fragment -->
+    <fragment
+        android:id="@+id/historyDetailFragment"
+        android:name="com.example.carservice.ui.details.HistoryDetailFragment"
+        android:label="@string/title_history_detail"
+        tools:layout="@layout/fragment_history_detail">
+
+        <argument android:name="bookingId" app:argType="string" />
+    </fragment>
+
+    <!-- Profile Fragment -->
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.carservice.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profileFragment_to_updateVehicleFragment"
+            app:destination="@id/updateVehicleFragment">
+
+            <argument android:name="vehicleId" app:argType="string" app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_profileFragment_to_addVehicleFragment"
+            app:destination="@id/addVehicleFragment" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+
+    <!-- Update Vehicle Fragment -->
+    <fragment
+        android:id="@+id/updateVehicleFragment"
+        android:name="com.example.carservice.ui.profile.UpdateVehicleFragment"
+        android:label="@string/title_update_vehicle"
+        tools:layout="@layout/fragment_update_vehicle">
+
+        <argument android:name="vehicleId" app:argType="string" app:nullable="false" />
+    </fragment>
+
+    <!-- Add Vehicle Fragment -->
+    <fragment
+        android:id="@+id/addVehicleFragment"
+        android:name="com.example.carservice.ui.profile.AddVehicleFragment"
+        android:label="@string/title_add_vehicle"
+        tools:layout="@layout/fragment_add_vehicle" />
+
+    <!-- Edit Profile Fragment -->
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.carservice.ui.profile.EditProfileFragment"
+        android:label="@string/title_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <!-- Change Password Fragment -->
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.carservice.ui.profile.ChangePasswordFragment"
+        android:label="@string/title_change_password"
+        tools:layout="@layout/fragment_change_password" />
+
+</navigation>
